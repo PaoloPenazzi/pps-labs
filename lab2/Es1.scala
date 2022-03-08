@@ -1,5 +1,4 @@
 package it.unibo.pps
-package exercises
 
 object Es1 extends App{
   val parityFunction: Int => String =
