@@ -1,5 +1,4 @@
 package it.unibo.pps
-package exercises
 
 object Es4 extends App {
   val curriedCheckFunction: Int => Int => Int => Boolean =
