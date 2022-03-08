@@ -1,5 +1,4 @@
 package it.unibo.pps
-package exercises
 
 object Es5 extends App{
   def compose(f: Int => Int, g: Int => Int): Int => Int =
