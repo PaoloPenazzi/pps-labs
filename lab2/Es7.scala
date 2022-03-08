@@ -1,5 +1,4 @@
 package it.unibo.pps
-package exercises
 
 object Es7 extends App{
   enum Shape:
