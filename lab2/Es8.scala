@@ -1,5 +1,4 @@
 package it.unibo.pps
-package exercises
 
 object Es8 extends App{
   enum Option[A]:
