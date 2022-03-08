@@ -1,5 +1,4 @@
 package it.unibo.pps
-package exercises
 
 object Es3 extends App{
   def negGeneric[X](pred: X => Boolean): X => Boolean =
