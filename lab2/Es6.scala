@@ -1,5 +1,4 @@
 package it.unibo.pps
-package exercises
 
 object Es6 extends App{
   // @annotation.tailrec
