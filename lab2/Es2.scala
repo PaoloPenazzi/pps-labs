@@ -1,5 +1,4 @@
 package it.unibo.pps
-package exercises
 
 object Es2 extends App{
   def negMethod(pred: String => Boolean): String => Boolean =
