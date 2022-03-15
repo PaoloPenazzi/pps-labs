@@ -44,9 +44,7 @@ object Streams extends App:
     def constant[A](k: A): Stream[A] =
       Stream.iterate(k)(k => k)
 
-    def fibonacci():Stream[Int] =
-      var str = Stream.iterate(0, 1)((a, b) => (b, a + b))
-      Stream.map(str)((a, b) => a)
+    val fibs: Stream[Int] = map(iterate(0, 1)((a, b) => (b, a + b)))((a, b) => a)
 
   end Stream
 
