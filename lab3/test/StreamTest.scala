@@ -18,5 +18,4 @@ class StreamTest:
 
   @Test def testFibonacci() =
     val expected = Cons(0, Cons(1, Cons(1, Cons(2, Cons(3, Cons(5, Cons(8, Cons(13, Nil()))))))))
-    val fibs: Stream[Int] = Stream.fibonacci()
-    assertEquals(expected, Stream.toList(Stream.take(fibs)(8)))
+    assertEquals(expected, Stream.toList(Stream.take(Stream.fibs)(8)))
