@@ -14,13 +14,14 @@ class LogicsImpl(private val size: Int, private val mines: Int) extends Logics:
   var selected: List[Tuple2[Int, Int]] = Nil()
   val random = Random()
   deployMines()
+  println(minesSet)
 
   def deployMines(): Unit = length(minesSet) match
       case x if x < mines =>
         val newMine = Tuple2(random.nextInt(size), random.nextInt(size))
         if (contains(minesSet, newMine)) then deployMines() else minesSet = append(minesSet, Cons(newMine, Nil()))
         deployMines()
-      case _ => println(minesSet)
+      case _ =>
 
   def neighbours(x: Int, y: Int): Int =
     var n = filter(computeCells(x, y))(x => contains(minesSet, x))
