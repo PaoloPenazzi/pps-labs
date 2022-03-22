@@ -29,7 +29,7 @@ class TestLogics:
     logicsImpl.minesSet = Cons((0, 0), Cons((1, 1), Cons((3, 2), Nil())))
     assertEquals(Optional.of(2), logicsImpl.hit(1, 0))
 
-  @Test def testHaveWon() =
+  @Test def testWin() =
     val logicsImpl = LogicsImpl(2, 0)
     logicsImpl.minesSet = Cons((0, 0), Cons((1, 1), Nil()))
     logicsImpl.hit(1, 0)

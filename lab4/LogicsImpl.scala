@@ -29,11 +29,11 @@ class LogicsImpl(private val size: Int, private val mines: Int) extends Logics:
 
   def computeCells(x: Int, y: Int): List[Tuple2[Int, Int]] =
     var neighbours: List[Tuple2[Int, Int]] = Nil()
-    val rows = Seq(x - 1, x, x + 1)
-    val cols = Seq(y - 1, y, y + 1)
-    for (n <- rows)
-      for (m <- cols)
-        neighbours = append(neighbours, Cons((n, m), Nil()))
+    for
+      i <- x - 1 to x + 1
+      j <- y - 1 to y + 1
+    do  
+      neighbours = append(neighbours, Cons((i, j), Nil()))
     neighbours
 
   def hit(x: Int, y: Int): java.util.Optional[Integer] =
