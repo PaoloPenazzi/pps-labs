@@ -1,6 +1,8 @@
 package u04lab.code
 
 import List.*
+import scala.Option
+import scala.Option.*
 
 trait Student:
   def name: String
