@@ -23,14 +23,13 @@ object Student:
     var coursesList: List[Course] = Nil()
 
     override def enrolling(args: Course*) =
-      args foreach(course => coursesList = append(coursesList, Cons(course, Nil())))
+      args foreach(course => coursesList = Cons(course, coursesList))
 
     override def courses: List[String] =
       map(coursesList)(x => x.name)
 
     override def hasTeacher(teacher: String): Boolean =
-      var teacherList = map(coursesList)(x => x.teacher)
-      contains(teacherList, teacher)
+      contains(map(coursesList)(x => x.teacher), teacher)
 
 object Course:
   def apply(name: String, teacher: String): Course =
