@@ -58,6 +58,9 @@ enum List[A]:
 
   def reverse(): List[A] = foldLeft[List[A]](Nil())((l, e) => e :: l)
 
+  def newAppend(list: List[A]): List[A] =
+    foldRight(list)(_ :: _)
+
   /** EXERCISES */
   def zipRight: List[(A, Int)] = ???
 
