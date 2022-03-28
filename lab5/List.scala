@@ -75,6 +75,10 @@ enum List[A]:
 
 // Factories
 object List:
+  def allPositive(l: List[Int]): Boolean = l match
+    case Nil() => true
+    case h :: t if h > 0 => allPositive(t)
+    case _ => false
 
   def apply[A](elems: A*): List[A] =
     var list: List[A] = Nil()
