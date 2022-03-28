@@ -10,25 +10,25 @@ import scala.util.Random
 
 /** solution and descriptions at https://bitbucket.org/mviroli/oop2019-esami/src/master/a01b/sol2/ */
 class LogicsImpl(private val size: Int, private val mines: Int) extends Logics:
-  var minesSet: List[Tuple2[Int, Int]] = Nil()
-  var selected: List[Tuple2[Int, Int]] = Nil()
-  val random = Random()
+  var minesSet: List[(Int, Int)] = Nil()
+  var selected: List[(Int, Int)] = Nil()
+  private val random = Random()
   deployMines()
   println(minesSet)
 
-  def deployMines(): Unit = length(minesSet) match
+  private def deployMines(): Unit = length(minesSet) match
       case x if x < mines =>
-        val newMine = Tuple2(random.nextInt(size), random.nextInt(size))
+        val newMine = (random.nextInt(size), random.nextInt(size))
         if (contains(minesSet, newMine)) then deployMines() else minesSet = append(minesSet, Cons(newMine, Nil()))
         deployMines()
       case _ =>
 
-  def neighbours(x: Int, y: Int): Int =
+  private def neighbours(x: Int, y: Int): Int =
     var n = filter(computeCells(x, y))(x => contains(minesSet, x))
     length(n)
 
-  def computeCells(x: Int, y: Int): List[Tuple2[Int, Int]] =
-    var neighbours: List[Tuple2[Int, Int]] = Nil()
+  private def computeCells(x: Int, y: Int): List[(Int, Int)] =
+    var neighbours: List[(Int, Int)] = Nil()
     for
       i <- x - 1 to x + 1
       j <- y - 1 to y + 1
@@ -37,8 +37,11 @@ class LogicsImpl(private val size: Int, private val mines: Int) extends Logics:
     neighbours
 
   def hit(x: Int, y: Int): java.util.Optional[Integer] =
-    val hit = Tuple2(x, y)
-    if (contains(minesSet, hit)) then OptionToOptional(None()) else
+    val hit = (x, y)
+    if (contains(minesSet, hit))
+    then
+      OptionToOptional(None())
+    else
       selected = append(selected, Cons(hit, Nil()))
       OptionToOptional(Some(neighbours(x, y)))
 
