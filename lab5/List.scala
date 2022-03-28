@@ -64,7 +64,8 @@ enum List[A]:
   /** EXERCISES */
   def zipRight: List[(A, Int)] = ???
 
-  def partition(pred: A => Boolean): (List[A], List[A]) = ???
+  def partition(pred: A => Boolean): (List[A], List[A]) =
+    (this.filter(pred), this.filter(x => !pred(x)))
 
   def span(pred: A => Boolean): (List[A], List[A]) = ???
 
