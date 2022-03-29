@@ -1,5 +1,7 @@
 package u05lab.ex2
 
+import scala.collection.immutable.HashMap
+
 enum Question:
   case RELEVANCE
   case SIGNIFICANCE
