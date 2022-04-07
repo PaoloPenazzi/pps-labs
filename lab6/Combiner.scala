@@ -12,8 +12,10 @@ trait Functions:
 object FunctionsImpl extends Functions:
   override def sum(a: List[Double]): Double = a match
     case List() => 0
-    case _ => a.sum
-  override def concat(a: Seq[String]): String = ???
+    case _ => a.foldLeft(0.0)(_ + _)
+  override def concat(a: Seq[String]): String = a match
+    case Nil => ""
+    case _ => a.foldLeft("")(_ + _)
   override def max(a: List[Int]): Int = ???
 
 /*
@@ -35,7 +37,6 @@ trait Combiner[A]:
 
 @main def checkFunctions(): Unit =
   val f: Functions = FunctionsImpl
-  println("ciaooo")
   println(f.sum(List(10.0, 20.0, 30.1))) // 60.1
   println(f.sum(List())) // 0.0
   println(f.concat(Seq("a", "b", "c"))) // abc
