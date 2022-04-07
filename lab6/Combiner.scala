@@ -1,7 +1,5 @@
 package u06lab.code
 
-import scala.annotation.tailrec
-
 /** 1) Implement trait Functions with an object FunctionsImpl such that the code in TryFunctions works correctly. */
 
 trait Functions:
@@ -9,16 +7,18 @@ trait Functions:
   def concat(a: Seq[String]): String
   def max(a: List[Int]): Int // gives Int.MinValue if a is empty
 
-object FunctionsImpl extends Functions:
-  override def sum(a: List[Double]): Double = a match
-    case List() => 0.0
-    case _ => a.foldLeft(0.0)(_ + _)
-  override def concat(a: Seq[String]): String = a match
-    case Nil => ""
-    case _ => a.foldLeft("")(_ + _)
-  override def max(a: List[Int]): Int = a match
-    case List() => -2147483648
-    case _ => a.foldLeft(-2147483648)((acc, x) => if acc > x then acc else x)
+import Combiner.given
+
+object FunctionsImpl extends Functions :
+
+  override def sum(a: List[Double]): Double = combiner(a)
+
+  override def concat(a: Seq[String]): String = combiner(a.toList)
+
+  override def max(a: List[Int]): Int = combiner(a)
+
+  def combiner[A](a: List[A])(using c: Combiner[A]): A =
+    a.foldLeft(c.unit)(c.combine)
 
 /*
  * 2) To apply DRY principle at the best,
