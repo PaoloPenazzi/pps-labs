@@ -11,14 +11,14 @@ trait Functions:
 
 object FunctionsImpl extends Functions:
   override def sum(a: List[Double]): Double = a match
-    case List() => 0
+    case List() => 0.0
     case _ => a.foldLeft(0.0)(_ + _)
   override def concat(a: Seq[String]): String = a match
     case Nil => ""
     case _ => a.foldLeft("")(_ + _)
   override def max(a: List[Int]): Int = a match
     case List() => -2147483648
-    case _ => a.foldLeft(0)((acc, x) => if acc > x then acc else x)
+    case _ => a.foldLeft(-2147483648)((acc, x) => if acc > x then acc else x)
 
 /*
  * 2) To apply DRY principle at the best,
