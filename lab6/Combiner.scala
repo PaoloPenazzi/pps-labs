@@ -16,7 +16,9 @@ object FunctionsImpl extends Functions:
   override def concat(a: Seq[String]): String = a match
     case Nil => ""
     case _ => a.foldLeft("")(_ + _)
-  override def max(a: List[Int]): Int = ???
+  override def max(a: List[Int]): Int = a match
+    case List() => -2147483648
+    case _ => a.foldLeft(0)((acc, x) => if acc > x then acc else x)
 
 /*
  * 2) To apply DRY principle at the best,
