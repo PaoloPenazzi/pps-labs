@@ -37,6 +37,17 @@ trait Combiner[A]:
   def unit: A
   def combine(a: A, b: A): A
 
+object Combiner:
+  given Combiner[Double] with
+    override def unit: Double = 0.0
+    override def combine(a: Double, b: Double): Double = a + b
+  given Combiner[String] with
+    override def unit: String = ""
+    override def combine(a: String, b: String): String = a + b
+  given Combiner[Int] with
+    override def unit: Int = -2147483648
+    override def combine(a: Int, b: Int): Int = if a > b then a else b
+
 @main def checkFunctions(): Unit =
   val f: Functions = FunctionsImpl
   println(f.sum(List(10.0, 20.0, 30.1))) // 60.1
