@@ -27,3 +27,25 @@ in_degree(e(_,E), E, 1).
 in_degree([e(_,E)|T], E, N) :- in_degree(T, E, M), N is M + 1, !.
 in_degree([H|T], E, M) :- in_degree(T, E, M).
 ?- in_degree([e(1,2), e(1,3), e(3,2)], 3, X).
+
+reaching([e(X,T)], X, T).
+reaching([e(X, N)|T], X, [N|L]) :- reaching(T, X, L), !.
+reaching([_|T], X, L) :- reaching(T, X, L).
+% why the output is [1,2,3|4] ???
+
+
+anypath(L, N1, N2, O) :- anypath(L, N1, N2, O, L).
+anypath([e(N1,N2)|_], N1, N2, e(N1,N2), IL).
+anypath([e(N,N2)|_], N1, N2, [Z|e(N,N2)], IL) :- anypath(IL, N1, N, Z).
+anypath([_|T], N1, N2, Z, IL) :- anypath(T, N1, N2, Z, IL).
+
+allreaching([], N, []).
+allreaching(L, N, Bag) :- findall(e(N,X), member(e(N,X),L), Bag).
+
+allreaching([], N, []).
+allreaching(L, N, Bag) :-
+    findall(X, member(e(N,X),L), [B1|B2]),
+    allreaching(e(X,Y), member(e(X,Y), L), B2).
+
+
+
